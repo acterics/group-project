@@ -1,0 +1,30 @@
+  version: '2.1'
+  services:
+    config:
+      environment:
+        CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
+      restart: always
+      logging:
+        options:
+          max-size: "10m"
+          max-file: "10"
+    registry:
+        environment:
+          CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
+        restart: always
+        ports:
+          - 8761:8761
+        logging:
+          options:
+            max-size: "10m"
+            max-file: "10"
+
+
+    gateway:
+      environment:
+        CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
+      restart: always
+      logging:
+        options:
+          max-size: "10m"
+          max-file: "10"

@@ -3,7 +3,7 @@ spring:
     name: registry
   cloud:
     config:
-      uri: http://config:8888
+      uri: http://localhost:8888
       fail-fast: true
       password: ${CONFIG_SERVICE_PASSWORD}
       username: user
@@ -11,7 +11,5 @@ eureka:
   instance:
     prefer-ip-address: true
   client:
-    registerWithEureka: false
-    fetchRegistry: false
-    server:
-      waitTimeInMsWhenSyncEmpty: 0
+    registerWithEureka: true
+    fetchRegistry: true
