@@ -1,13 +1,11 @@
-plugins {
-    id 'java'
-    id 'io.franzbecker.gradle-lombok' version '1.6'
-}
 
+apply plugin: 'java'
 apply plugin: 'spring-boot'
 
 springBoot {
-    mainClass 'com.groupproject.config.ConfigApplication'
+    mainClass 'com.groupproject.registry.RegistryApplication'
 }
+
 
 dependencyManagement {
     imports {
@@ -15,8 +13,10 @@ dependencyManagement {
     }
 }
 
-
 dependencies {
-    compile 'org.springframework.boot:spring-boot-starter-security'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
     compile 'org.springframework.cloud:spring-cloud-config-server'
+    compile 'org.springframework.cloud:spring-cloud-starter-eureka-server'
 }
+
+

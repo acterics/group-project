@@ -1,6 +1,5 @@
 plugins {
     id 'java'
-    id 'war'
     id 'io.franzbecker.gradle-lombok' version '1.6'
 }
 
@@ -22,6 +21,5 @@ dependencies {
     compile 'org.springframework.cloud:spring-cloud-starter-zuul:1.2.0.RELEASE'
     compile 'org.springframework.cloud:spring-cloud-starter-config'
     compile 'org.springframework.cloud:spring-cloud-starter'
-    compile 'org.springframework.boot:spring-boot-starter-web'
 }
 

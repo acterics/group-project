@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    config:
+      fail-fast: true
+      uri: http://config:8888
+      password: ${CONFIG_SERVICE_PASSWORD}
+      username: user
