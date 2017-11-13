@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+    id 'war'
+    id 'io.franzbecker.gradle-lombok' version '1.6'
+}
+
+apply plugin: 'spring-boot'
+
+springBoot {
+    mainClass 'com.groupproject.config.ConfigApplication'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Edgware.BUILD-SNAPSHOT'
+    }
+}
+
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-security'
+    compile 'org.springframework.cloud:spring-cloud-config-server'
+}

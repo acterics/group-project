@@ -1,0 +1,28 @@
+group 'isgroup'
+version '0.1'
+
+buildscript {
+    ext {
+        springBootVersion = '1.5.6.RELEASE'
+        liquibaseCoreVersion = '3.5.1'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+subprojects {
+    tasks.withType(JavaCompile) {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+
+    repositories {
+        mavenCentral()
+        maven { url 'https://repo.spring.io/libs-snapshot' }
+    }
+}
+
