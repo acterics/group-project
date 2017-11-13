@@ -1,0 +1,3 @@
+server:
+  context-path: /sandbox
+  port: 7000

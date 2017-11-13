@@ -3,11 +3,11 @@ plugins {
     id 'io.franzbecker.gradle-lombok' version '1.6'
 }
 
-apply plugin: 'spring-boot'
+apply plugin: 'org.springframework.boot'
 
 
 springBoot {
-    mainClass = 'com.groupproject.apigateway.GetawayApplication'
+    mainClass 'com.groupproject.apigateway.GatewayApplication'
 }
 
 dependencyManagement {
@@ -22,5 +22,6 @@ dependencies {
     compile 'org.springframework.cloud:spring-cloud-starter-config'
     compile 'org.springframework.cloud:spring-cloud-starter'
     compile 'org.springframework.cloud:spring-cloud-starter-eureka'
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
 

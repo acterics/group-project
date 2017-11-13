@@ -19,9 +19,13 @@ zuul:
   routes:
     sandbox:
       path: /sandbox/**
-      serviceId: sandbox
+      serviceId: sandbox-service
       stripPrefix: false
       sensitiveHeader:
+    github:
+      path: /github-route/**
+      url: https://github.com
+      stripPrefix: false
 
 
 server:

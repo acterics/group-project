@@ -1,5 +1,5 @@
 apply plugin: 'java'
-apply plugin: 'spring-boot'
+apply plugin: 'org.springframework.boot'
 
 springBoot {
     mainClass 'com.groupproject.registry.RegistryApplication'
@@ -13,7 +13,6 @@ dependencyManagement {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
     compile 'org.springframework.cloud:spring-cloud-starter-config'
     compile 'org.springframework.cloud:spring-cloud-starter-eureka-server'
     testCompile 'org.springframework.boot:spring-boot-starter-test'
