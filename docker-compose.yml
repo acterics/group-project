@@ -12,14 +12,12 @@ services:
       depends_on:
         - config
         - registry
-      restart: always
       ports:
         - 4000:4000
   registry:
       build: registry
       depends_on:
         - config
-      restart: always
       ports:
         - 8761:8761
 
@@ -30,7 +28,6 @@ services:
       depends_on:
         - config
         - registry
-      restart: always
   product-service:
       build: product-service
       ports:
@@ -38,4 +35,3 @@ services:
       depends_on:
         - config
         - registry
-      restart: always
