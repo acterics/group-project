@@ -4,11 +4,38 @@ services:
       build: config
       ports:
         - 8888:8888
+      environment:
+        - DATABASE_USER_NAME
+        - DATABASE_USER_PASSWORD
   gateway:
       build: api-gateway
+      depends_on:
+        - config
+        - registry
+      restart: always
+      ports:
+        - 4000:4000
   registry:
       build: registry
-  sandbox:
+      depends_on:
+        - config
+      restart: always
+      ports:
+        - 8761:8761
+
+  sandbox-service:
       build: sandbox
       ports:
         - 7000:7000
+      depends_on:
+        - config
+        - registry
+      restart: always
+  product-service:
+      build: product-service
+      ports:
+        - 7001:7001
+      depends_on:
+        - config
+        - registry
+      restart: always
