@@ -1,6 +1,7 @@
 package com.groupproject.productservice.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -13,15 +14,14 @@ public class PropertyValue {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private Long propertyId;
-    private Long itemId;
     private String value;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "itemId", referencedColumnName = "id")
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "itemId")
     private Item item;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "propertyId", referencedColumnName = "id")
+    @JoinColumn(name = "propertyId")
     private Property property;
 }

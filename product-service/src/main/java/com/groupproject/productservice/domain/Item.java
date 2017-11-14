@@ -1,9 +1,9 @@
 package com.groupproject.productservice.domain;
 
-
 import lombok.Data;
-
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -13,13 +13,17 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private Long productId;
     private Float price;
     private Integer quantity;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "productId", referencedColumnName = "id")
+    @OneToMany(mappedBy = "item")
+    private List<PropertyValue> properties = new ArrayList<>();
+
+
+    @ManyToOne
+    @JoinColumn(name = "productId")
     private Product product;
+
 
 
 }
