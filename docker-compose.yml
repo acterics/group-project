@@ -21,6 +21,13 @@ services:
       ports:
         - 8761:8761
 
+  sandbox-service:
+      build: sandbox
+      ports:
+        - 7000:7000
+      depends_on:
+        - config
+        - registry
   product-service:
       build: product-service
       ports:
