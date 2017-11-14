@@ -22,9 +22,9 @@ zuul:
       serviceId: sandbox-service
       stripPrefix: false
       sensitiveHeader:
-    github:
-      path: /github-route/**
-      url: https://github.com
+    products:
+      path: /products/**
+      serviceId: product-service
       stripPrefix: false
 
 

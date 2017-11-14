@@ -3,4 +3,5 @@ include 'api-gateway'
 include 'config'
 include 'registry'
 include 'sandbox'
+include 'product-service'
 

@@ -1,0 +1,3 @@
+server:
+  context-path: /products
+  port: 7001
