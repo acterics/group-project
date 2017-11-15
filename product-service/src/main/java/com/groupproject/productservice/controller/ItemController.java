@@ -5,11 +5,11 @@ import com.groupproject.productservice.mapper.CatalogResponseMapper;
 import com.groupproject.productservice.model.response.CatalogResponse;
 import com.groupproject.productservice.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class ItemController {
@@ -24,8 +24,13 @@ public class ItemController {
         this.catalogResponseMapper = catalogResponseMapper;
     }
 
-    @RequestMapping(path = "/catalog", method = RequestMethod.GET)
-    public CatalogResponse getCatalog() {
-        return catalogResponseMapper.map(itemService.getItems());
+    @RequestMapping(path = "/catalog", params = {"page", "size"}, method = RequestMethod.GET)
+    public
+    @ResponseBody CatalogResponse getCatalog(@RequestParam(name = "page", required = false, defaultValue = "0")
+                                                         Integer page,
+                                             @RequestParam(name = "size", required = false, defaultValue = "10")
+                                                     Integer size) {
+        PageRequest pageRequest = new PageRequest(page, size);
+        return catalogResponseMapper.map(itemService.getItems(pageRequest));
     }
 }

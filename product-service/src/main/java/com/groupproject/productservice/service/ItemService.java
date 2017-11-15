@@ -4,6 +4,8 @@ package com.groupproject.productservice.service;
 import com.groupproject.productservice.domain.Item;
 import com.groupproject.productservice.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,7 +20,13 @@ public class ItemService {
         this.itemRepository = itemRepository;
     }
 
-    public List<Item> getItems() {
-        return itemRepository.findAll();
+    public List<Item> getItems(int skip, int count) {
+        int page = skip / count;
+        PageRequest pageRequest = new PageRequest(page, count);
+        return itemRepository.findAll(pageRequest).getContent();
+    }
+
+    public List<Item> getItems(Pageable pageable) {
+        return itemRepository.findAll(pageable).getContent();
     }
 }

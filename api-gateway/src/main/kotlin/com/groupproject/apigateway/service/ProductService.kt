@@ -7,10 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 @Service
-class ProductService {
+class ProductService
+    @Autowired constructor(private val productClient: ProductClient) {
 
-    @Autowired
-    lateinit var productClient: ProductClient
 
-    fun getProducts(): Single<List<Product>> = Single.just(productClient.getProducts())
 }
