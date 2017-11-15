@@ -9,24 +9,16 @@ import java.util.List;
 
 @Data
 @Entity
-public class Product {
+public class Vendor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private String name;
     private String description;
-    private String title;
-
-    @ManyToOne
-    @JoinColumn(name = "vendorId")
-    private Vendor vendor;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "product")
-    private List<Item> items = new ArrayList<>();
-
-    @OneToMany(mappedBy = "product")
-    private List<ProductProperty> productProperties = new ArrayList<>();
-
+    @OneToMany(mappedBy = "vendor")
+    private List<Product> products = new ArrayList<>();
 }

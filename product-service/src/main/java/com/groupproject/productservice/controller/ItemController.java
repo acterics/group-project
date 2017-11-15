@@ -1,6 +1,8 @@
 package com.groupproject.productservice.controller;
 
 import com.groupproject.productservice.domain.Item;
+import com.groupproject.productservice.mapper.CatalogResponseMapper;
+import com.groupproject.productservice.model.response.CatalogResponse;
 import com.groupproject.productservice.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,14 +15,17 @@ import java.util.List;
 public class ItemController {
 
     private final ItemService itemService;
+    private final CatalogResponseMapper catalogResponseMapper;
 
     @Autowired
-    public ItemController(ItemService itemService) {
+    public ItemController(ItemService itemService,
+                          CatalogResponseMapper catalogResponseMapper) {
         this.itemService = itemService;
+        this.catalogResponseMapper = catalogResponseMapper;
     }
 
     @RequestMapping(path = "/catalog", method = RequestMethod.GET)
-    public List<Item> getItems() {
-        return itemService.getItems();
+    public CatalogResponse getCatalog() {
+        return catalogResponseMapper.map(itemService.getItems());
     }
 }
