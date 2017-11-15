@@ -18,6 +18,7 @@ public class ProductMockService {
     private final PropertyRepository propertyRepository;
     private final PropertyValueRepository propertyValueRepository;
     private final VendorRepository vendorRepository;
+    private final CategoryRepository categoryRepository;
 
 
     @Autowired
@@ -26,20 +27,23 @@ public class ProductMockService {
                               ProductPropertyRepository productPropertyRepository,
                               PropertyRepository propertyRepository,
                               PropertyValueRepository propertyValueRepository,
-                              VendorRepository vendorRepository) {
+                              VendorRepository vendorRepository,
+                              CategoryRepository categoryRepository) {
         this.productRepository = productRepository;
         this.itemRepository = itemRepository;
         this.productPropertyRepository = productPropertyRepository;
         this.propertyRepository = propertyRepository;
         this.propertyValueRepository = propertyValueRepository;
         this.vendorRepository = vendorRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     @PostConstruct
     public void mockDatabase() {
+        Category category = getNewPersistedCategory();
         Vendor vendor = getNewPersistedVendor();
         Property property = getNewPersistedProperty();
-        Product product = getNewPersistedProduct(vendor);
+        Product product = getNewPersistedProduct(vendor, category);
         ProductProperty productProperty = getNewPersistedProductProperty(product, property);
         for (int i = 0; i < 10; i++) {
             Item item = getNewPersistedItem(product);
@@ -56,11 +60,12 @@ public class ProductMockService {
         return propertyRepository.save(property);
     }
 
-    private Product getNewPersistedProduct(Vendor vendor) {
+    private Product getNewPersistedProduct(Vendor vendor, Category category) {
         Product product = new Product();
         product.setDescription("Awesome new product");
         product.setTitle("Green Big Product");
         product.setVendor(vendor);
+        product.setCategory(category);
         return productRepository.save(product);
     }
 
@@ -93,6 +98,14 @@ public class ProductMockService {
         vendor.setDescription("Expensive Vendor");
 
         return vendorRepository.save(vendor);
+    }
+
+    private Category getNewPersistedCategory() {
+        Category category = new Category();
+        category.setName("shoes");
+        category.setTitle("Shoes");
+        category.setDescription("Comfortable shoes for all family");
+        return categoryRepository.save(category);
     }
 
 }
