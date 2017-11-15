@@ -2,29 +2,32 @@ version: '2.1'
 services:
   config:
       build: config
-      ports:
-        - 8888:8888
       environment:
         - DATABASE_USER_NAME
         - DATABASE_USER_PASSWORD
+
   gateway:
       build: api-gateway
-      depends_on:
-        - config
-        - registry
       ports:
-        - 4000:4000
+        - 8080:80
+      depends_on:
+        config:
+          condition: service_healthy
+        registry:
+          condition: service_healthy
+
   registry:
       build: registry
-      depends_on:
-        - config
       ports:
-        - 8761:8761
+        - 8081:80
+      depends_on:
+        config:
+          condition: service_healthy
 
   product-service:
       build: product-service
-      ports:
-        - 7001:7001
       depends_on:
-        - config
-        - registry
+        config:
+          condition: service_healthy
+        registry:
+          condition: service_healthy
