@@ -6,10 +6,8 @@ apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 
 springBoot {
-    mainClass 'com.groupproject.sandbox.SandboxApplication'
+    mainClass 'com.groupproject.ordering.OrderingApplication'
 }
-
-
 
 dependencyManagement {
     imports {
@@ -17,11 +15,14 @@ dependencyManagement {
     }
 }
 
-
-
 dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
     compile "org.springframework.boot:spring-boot-starter-web"
+    compile "org.springframework.boot:spring-boot-starter-actuator"
+    compile "org.springframework.boot:spring-boot-starter-data-jpa"
     compile 'org.springframework.cloud:spring-cloud-starter-config'
     compile 'org.springframework.cloud:spring-cloud-starter-eureka'
-    compile "org.springframework.boot:spring-boot-starter-actuator"
+    compile "org.postgresql:postgresql:9.4-1206-jdbc42"
+
+
 }

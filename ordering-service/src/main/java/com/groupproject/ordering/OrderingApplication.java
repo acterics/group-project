@@ -1,4 +1,5 @@
-package com.groupproject.sandbox;
+package com.groupproject.ordering;
+
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,8 +7,8 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-public class SandboxApplication {
+public class OrderingApplication {
     public static void main(String[] args) {
-        SpringApplication.run(SandboxApplication.class, args);
+        SpringApplication.run(OrderingApplication.class, args);
     }
 }
