@@ -5,4 +5,5 @@ include 'registry'
 include 'product-service'
 include 'ordering-service'
 include 'user-service'
+include 'auth-server'
 

@@ -9,15 +9,10 @@ services:
         - DATABASE_USER_PASSWORD
   gateway:
       build: api-gateway
-      depends_on:
-        - config
-        - registry
       ports:
         - 4000:4000
   registry:
       build: registry
-      depends_on:
-        - config
       ports:
         - 8761:8761
 
@@ -25,13 +20,7 @@ services:
       build: sandbox
       ports:
         - 7000:7000
-      depends_on:
-        - config
-        - registry
   product-service:
       build: product-service
       ports:
         - 7001:7001
-      depends_on:
-        - config
-        - registry

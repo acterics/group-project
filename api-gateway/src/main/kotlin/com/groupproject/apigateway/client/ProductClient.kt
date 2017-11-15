@@ -8,7 +8,4 @@ import org.springframework.web.bind.annotation.RequestMethod
 
 @FeignClient(name = "product-service")
 interface ProductClient {
-    @RequestMapping(method = arrayOf(RequestMethod.GET), value = "/products",
-            consumes = arrayOf(MediaType.APPLICATION_JSON_UTF8_VALUE))
-    fun getProducts(): List<Product>
 }
