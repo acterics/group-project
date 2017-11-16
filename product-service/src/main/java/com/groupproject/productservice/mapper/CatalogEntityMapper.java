@@ -29,6 +29,8 @@ public class CatalogEntityMapper {
         catalogEntity.setBrand(item.getProduct().getVendor().getName());
         catalogEntity.setPrice(item.getPrice());
         catalogEntity.setId(item.getId());
+        catalogEntity.setCategory(item.getProduct().getCategory());
+        catalogEntity.setPhotos(item.getPhotos());
 
         List<PropertyResponse> properties = new ArrayList<>();
         for (PropertyValue propertyValue: item.getProperties()) {

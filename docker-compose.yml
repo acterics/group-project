@@ -1,16 +1,27 @@
 version: '2.1'
 services:
+
+  database:
+      image: postgres:9.5
+      environment:
+        - POSTGRES_PASSWORD
+        - POSTGRES_USER
+        - POSTGRES_DB
+      ports:
+        - 5432:5432
+
   config:
       build: config
-      environment:
-        - DATABASE_USER_NAME
-        - DATABASE_USER_PASSWORD
+      depends_on:
+        database:
+          condition: service_started
 
   gateway:
       build: api-gateway
       ports:
         - 8080:80
       depends_on:
+
         config:
           condition: service_healthy
         registry:
@@ -31,3 +42,7 @@ services:
           condition: service_healthy
         registry:
           condition: service_healthy
+      environment:
+        - POSTGRES_PASSWORD
+        - POSTGRES_USER
+        - POSTGRES_DB

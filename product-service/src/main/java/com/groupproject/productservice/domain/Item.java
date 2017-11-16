@@ -7,6 +7,7 @@ import java.util.List;
 
 @Data
 @Entity
+@Table
 public class Item {
 
     @Id
@@ -18,6 +19,9 @@ public class Item {
 
     @OneToMany(mappedBy = "item")
     private List<PropertyValue> properties = new ArrayList<>();
+
+    @OneToMany(mappedBy = "productItem")
+    private List<Photo> photos = new ArrayList<>();
 
 
     @ManyToOne

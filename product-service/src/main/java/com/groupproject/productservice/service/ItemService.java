@@ -20,11 +20,6 @@ public class ItemService {
         this.itemRepository = itemRepository;
     }
 
-    public List<Item> getItems(int skip, int count) {
-        int page = skip / count;
-        PageRequest pageRequest = new PageRequest(page, count);
-        return itemRepository.findAll(pageRequest).getContent();
-    }
 
     public List<Item> getItems(Pageable pageable) {
         return itemRepository.findAll(pageable).getContent();
