@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+import static java.util.OptionalInt.of;
+
 @RestController
 public class ItemController {
 
@@ -24,13 +26,15 @@ public class ItemController {
         this.catalogResponseMapper = catalogResponseMapper;
     }
 
-    @RequestMapping(path = "/catalog", params = {"page", "size"}, method = RequestMethod.GET)
-    public
-    @ResponseBody CatalogResponse getCatalog(@RequestParam(name = "page", required = false, defaultValue = "0")
-                                                         Integer page,
-                                             @RequestParam(name = "size", required = false, defaultValue = "10")
-                                                     Integer size) {
-        PageRequest pageRequest = new PageRequest(page, size);
+    @RequestMapping(path = "/catalog", method = RequestMethod.GET)
+    public @ResponseBody CatalogResponse getCatalog(@RequestParam(value = "page", required = false)
+                                                                Integer page,
+                                                    @RequestParam(value = "size", required = false)
+                                                            Integer size) {
+        Optional<Integer> pageArg = Optional.ofNullable(page);
+        Optional<Integer> sizeArg = Optional.ofNullable(size);
+
+        PageRequest pageRequest = new PageRequest(pageArg.orElse(0), sizeArg.orElse(10));
         return catalogResponseMapper.map(itemService.getItems(pageRequest));
     }
 }
