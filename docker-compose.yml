@@ -16,6 +16,20 @@ services:
         database:
           condition: service_started
 
+  auth-server:
+      build: auth-server
+      environment:
+        - AUTH_KEYSTORE_PASSWORD
+        - AUTH_KEYSTORE_ALIAS_PASSWORD
+        - AUTH_KEYSTORE_ALIAS
+        - CLIENT_ID
+        - CLIENT_PASSWORD
+      ports:
+        - 8082:80
+      depends_on:
+        config:
+          condition: service_healthy
+
   gateway:
       build: api-gateway
       ports:
