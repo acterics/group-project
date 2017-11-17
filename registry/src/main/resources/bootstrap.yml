@@ -3,13 +3,11 @@ spring:
     name: registry
   cloud:
     config:
-      uri: http://config
+      uri: http://localhost:8888
       fail-fast: true
       password: ${CONFIG_SERVICE_PASSWORD}
       username: user
 
-server:
-  port: 80
 
 eureka:
   instance:

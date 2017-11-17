@@ -1,4 +1,3 @@
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://registry/eureka/
+
+server:
+  port: 8761

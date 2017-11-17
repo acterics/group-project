@@ -1,10 +1,8 @@
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://registry/eureka/
+
 
 server:
   contextPath: /uaa
+  port: 5000
 
 credentials:
   keystore-password: ${AUTH_KEYSTORE_PASSWORD}

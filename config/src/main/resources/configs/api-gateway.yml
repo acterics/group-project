@@ -1,8 +1,3 @@
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://registry/eureka/
-
 zuul:
   ignoredServices: '*'
   host:
@@ -21,3 +16,6 @@ zuul:
       path: /user/**
       serviceId: user-service
       stripPrefix: false
+
+server:
+  port: 9000
