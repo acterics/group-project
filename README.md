@@ -1,6 +1,6 @@
-#Group Project
+# Group Project
 
-##Сервисы
+## Сервисы
 
 ### [Config Service](./config) (**IN DOCKER-COMPOSE**)
 Сервис запускаеться первым и раздает конфиг 
