@@ -2,6 +2,9 @@ package com.groupproject.ordering.service;
 
 import com.groupproject.ordering.domain.Cart;
 import com.groupproject.ordering.domain.ProductCart;
+import com.groupproject.ordering.mapper.CartResponseMapper;
+import com.groupproject.ordering.model.response.ActionResponse;
+import com.groupproject.ordering.model.response.CartResponse;
 import com.groupproject.ordering.repository.CartRepository;
 import com.groupproject.ordering.repository.ProductCartRepository;
 import org.springframework.stereotype.Service;
@@ -11,18 +14,21 @@ public class CartService {
 
     private final CartRepository cartRepository;
     private final ProductCartRepository productCartRepository;
+    private final CartResponseMapper cartResponseMapper;
 
     public CartService(CartRepository cartRepository,
-                       ProductCartRepository productCartRepository) {
+                       ProductCartRepository productCartRepository,
+                       CartResponseMapper cartResponseMapper) {
         this.cartRepository = cartRepository;
         this.productCartRepository = productCartRepository;
+        this.cartResponseMapper = cartResponseMapper;
     }
 
-    public Cart getCart(Long userId) {
-        return cartRepository.getByUserId(userId);
+    public CartResponse getCart(Long userId) {
+        return cartResponseMapper.map(cartRepository.getByUserId(userId));
     }
 
-    public ProductCart addProductToCart(Long userId, Long productItemId) {
+    public ActionResponse addProductToCart(Long userId, Long productItemId) {
         Cart userCart = cartRepository.getByUserId(userId);
 
         ProductCart productCart =
@@ -34,18 +40,29 @@ public class CartService {
             productCart.setCart(userCart);
         }
         productCart.increaseQuantity();
-        return productCartRepository.save(productCart);
+        productCart = productCartRepository.save(productCart);
+        ActionResponse response = new ActionResponse();
+        if (productCart == null) {
+            response.setSuccess(false);
+            response.setMessage("Can't add product to cart");
+        } else {
+            response.setSuccess(true);
+        }
+        return response;
     }
 
-    public ProductCart deleteProductFromCart(Long userId, Long productItemId) {
+    public ActionResponse deleteProductFromCart(Long userId, Long productItemId) {
         Cart userCart = cartRepository.getByUserId(userId);
+        ActionResponse actionResponse = new ActionResponse();
         ProductCart productCart =
                 productCartRepository.getProductCartByItemIdAndCart(productItemId, userCart);
         if (productCart == null) {
-            return null;
+            actionResponse.setSuccess(false);
+            actionResponse.setMessage("Item doesn't exist in user cart");
+            return actionResponse;
         }
         if (productCart.getQuantity() == 0) {
-            return null;
+            throw new IllegalStateException("Quantity can't be zero");
         }
         productCart.decreaseQuantity();
         if (productCart.getQuantity() == 0) {
@@ -53,6 +70,8 @@ public class CartService {
         } else {
             productCartRepository.save(productCart);
         }
-        return productCart;
+        ActionResponse response = new ActionResponse();
+        response.setSuccess(true);
+        return actionResponse;
     }
 }

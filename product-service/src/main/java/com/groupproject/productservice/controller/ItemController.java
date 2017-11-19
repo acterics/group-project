@@ -20,29 +20,25 @@ public class ItemController {
     private static final int DEFAULT_PAGE_SIZE = 10;
 
     private final ItemService itemService;
-    private final CatalogResponseMapper catalogResponseMapper;
 
     @Autowired
-    public ItemController(ItemService itemService,
-                          CatalogResponseMapper catalogResponseMapper) {
+    public ItemController(ItemService itemService) {
         this.itemService = itemService;
-        this.catalogResponseMapper = catalogResponseMapper;
     }
 
     @RequestMapping(path = "/catalog", method = RequestMethod.GET)
     public @ResponseBody CatalogResponse getCatalog(@RequestParam(value = "page", required = false) Integer page,
-                                                    @RequestParam(value = "size", required = false) Integer size,
-                                                    @RequestParam(value = "ids[]", required = false) Long[] ids) {
-        List<Item> items;
-        if (ids != null) {
-            items = itemService.getItems(ids);
-        } else {
-            Optional<Integer> pageArg = Optional.ofNullable(page);
-            Optional<Integer> sizeArg = Optional.ofNullable(size);
-            PageRequest pageRequest = new PageRequest(pageArg.orElse(DEFAULT_PAGE), sizeArg.orElse(DEFAULT_PAGE_SIZE));
-            items = itemService.getItems(pageRequest);
-        }
-
-        return catalogResponseMapper.map(items);
+                                                    @RequestParam(value = "size", required = false) Integer size) {
+        Optional<Integer> pageArg = Optional.ofNullable(page);
+        Optional<Integer> sizeArg = Optional.ofNullable(size);
+        return itemService.getCatalogPage(pageArg.orElse(DEFAULT_PAGE), sizeArg.orElse(DEFAULT_PAGE_SIZE));
     }
+
+
+    @RequestMapping(method = RequestMethod.GET)
+    @ResponseBody
+    public CatalogResponse getProducts(@RequestParam(value = "ids[]") Long[] ids) {
+        return itemService.getCatalogByIds(ids);
+    }
+
 }

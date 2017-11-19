@@ -1,8 +1,10 @@
 package com.groupproject.image.service;
 
 import com.groupproject.image.configuration.ImgproxyConfiguration;
+import com.groupproject.image.mapper.LinkResponseMapper;
 import com.groupproject.image.model.Image;
 import com.groupproject.image.model.ProxiedImage;
+import com.groupproject.image.model.response.LinkResponse;
 import org.bouncycastle.util.encoders.Hex;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,18 +23,20 @@ public class ImageService {
 
     private final byte[] imgproxyKey;
     private final byte[] imgproxySalt;
-
     private final Base64.Encoder base64encoder;
+    private final LinkResponseMapper linkResponseMapper;
 
     @Autowired
-    public ImageService(ImgproxyConfiguration imgproxyConfiguration) {
-        imgproxyKey = Hex.decode(imgproxyConfiguration.getKey());
-        imgproxySalt = Hex.decode(imgproxyConfiguration.getSalt());
+    public ImageService(ImgproxyConfiguration imgproxyConfiguration,
+                        LinkResponseMapper linkResponseMapper) {
 
-        base64encoder = Base64.getEncoder();
+        this.linkResponseMapper = linkResponseMapper;
+        this.base64encoder = Base64.getEncoder();
+        this.imgproxyKey = Hex.decode(imgproxyConfiguration.getKey());
+        this.imgproxySalt = Hex.decode(imgproxyConfiguration.getSalt());
     }
 
-    public List<ProxiedImage> getItems(List<Image> images) {
+    public LinkResponse getItems(List<Image> images) {
 
         ArrayList<ProxiedImage> proxiedImages = new ArrayList<>();
 
@@ -40,7 +44,7 @@ public class ImageService {
             proxiedImages.add(new ProxiedImage(getSignedUrl(image)));
         }
 
-        return proxiedImages;
+        return linkResponseMapper.map(proxiedImages);
     }
 
     public String encode(byte [] text) {
