@@ -30,11 +30,19 @@ public class ItemController {
     public @ResponseBody CatalogResponse getCatalog(@RequestParam(value = "page", required = false)
                                                                 Integer page,
                                                     @RequestParam(value = "size", required = false)
-                                                            Integer size) {
-        Optional<Integer> pageArg = Optional.ofNullable(page);
-        Optional<Integer> sizeArg = Optional.ofNullable(size);
+                                                            Integer size,
+                                                    @RequestParam(value = "ids[]", required = false)
+                                                            Long[] ids) {
+        List<Item> items;
+        if (ids != null) {
+            items = itemService.getItems(ids);
+        } else {
+            Optional<Integer> pageArg = Optional.ofNullable(page);
+            Optional<Integer> sizeArg = Optional.ofNullable(size);
+            PageRequest pageRequest = new PageRequest(pageArg.orElse(0), sizeArg.orElse(10));
+            items = itemService.getItems(pageRequest);
+        }
 
-        PageRequest pageRequest = new PageRequest(pageArg.orElse(0), sizeArg.orElse(10));
-        return catalogResponseMapper.map(itemService.getItems(pageRequest));
+        return catalogResponseMapper.map(items);
     }
 }

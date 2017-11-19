@@ -8,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -24,4 +25,6 @@ public class ItemService {
     public List<Item> getItems(Pageable pageable) {
         return itemRepository.findAll(pageable).getContent();
     }
+
+    public List<Item> getItems(Long[] ids) { return itemRepository.findAll(Arrays.asList(ids)); }
 }
