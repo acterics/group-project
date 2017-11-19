@@ -22,4 +22,15 @@ public class ProductCart {
     @ManyToOne
     @JoinColumn(name = "cartId")
     private Cart cart;
+
+    public void increaseQuantity() {
+        quantity++;
+    }
+
+    public void decreaseQuantity() {
+        quantity--;
+        if (quantity < 0) {
+            throw new IllegalStateException("quantity can't be less 0");
+        }
+    }
 }
