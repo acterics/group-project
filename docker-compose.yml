@@ -52,7 +52,9 @@ services:
         - IMGPROXY_KEY
         - IMGPROXY_SALT
 
-        - IMGPROXY_BIND=80
+        - IMGPROXY_BIND=:80
+      ports:
+        - 9000:80
 
   image-service:
       build: image-service

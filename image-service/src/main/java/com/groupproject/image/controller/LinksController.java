@@ -5,11 +5,9 @@ import com.groupproject.image.model.request.LinkRequest;
 import com.groupproject.image.model.response.LinkResponse;
 import com.groupproject.image.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+@RestController
 public class LinksController {
 
     private final ImageService imageService;

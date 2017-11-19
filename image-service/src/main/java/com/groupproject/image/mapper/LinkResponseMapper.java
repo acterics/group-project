@@ -9,11 +9,6 @@ import java.util.List;
 @Component
 public class LinkResponseMapper {
 
-    @Autowired
-    LinkResponseMapper() {
-
-    }
-
     public LinkResponse map(List<ProxiedImage> images) {
 
         return new LinkResponse(images);

@@ -1,7 +1,9 @@
 package com.groupproject.image.model;
 
+import lombok.Data;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 
+@Data
 public class Image {
 
     private String url;

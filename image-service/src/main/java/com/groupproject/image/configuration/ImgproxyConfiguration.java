@@ -17,4 +17,11 @@ public class ImgproxyConfiguration {
         return salt;
     }
 
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
 }

@@ -91,7 +91,7 @@ public class ImageService {
             "/" + image.getGravity() +
             "/" + image.getEnlarge() +
             "/" + encodedUrl +
-            "/" + image.getExtension();
+            "." + image.getExtension();
 
     }
 }

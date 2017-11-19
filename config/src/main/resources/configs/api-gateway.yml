@@ -21,3 +21,7 @@ zuul:
       path: /user/**
       serviceId: user-service
       stripPrefix: false
+    image-service:
+      path: /image/**
+      serviceId: image-service
+      stripPrefix: false
