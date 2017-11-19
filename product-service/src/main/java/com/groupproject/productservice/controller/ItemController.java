@@ -16,6 +16,9 @@ import static java.util.OptionalInt.of;
 @RestController
 public class ItemController {
 
+    private static final int DEFAULT_PAGE = 0;
+    private static final int DEFAULT_PAGE_SIZE = 10;
+
     private final ItemService itemService;
     private final CatalogResponseMapper catalogResponseMapper;
 
@@ -27,19 +30,16 @@ public class ItemController {
     }
 
     @RequestMapping(path = "/catalog", method = RequestMethod.GET)
-    public @ResponseBody CatalogResponse getCatalog(@RequestParam(value = "page", required = false)
-                                                                Integer page,
-                                                    @RequestParam(value = "size", required = false)
-                                                            Integer size,
-                                                    @RequestParam(value = "ids[]", required = false)
-                                                            Long[] ids) {
+    public @ResponseBody CatalogResponse getCatalog(@RequestParam(value = "page", required = false) Integer page,
+                                                    @RequestParam(value = "size", required = false) Integer size,
+                                                    @RequestParam(value = "ids[]", required = false) Long[] ids) {
         List<Item> items;
         if (ids != null) {
             items = itemService.getItems(ids);
         } else {
             Optional<Integer> pageArg = Optional.ofNullable(page);
             Optional<Integer> sizeArg = Optional.ofNullable(size);
-            PageRequest pageRequest = new PageRequest(pageArg.orElse(0), sizeArg.orElse(10));
+            PageRequest pageRequest = new PageRequest(pageArg.orElse(DEFAULT_PAGE), sizeArg.orElse(DEFAULT_PAGE_SIZE));
             items = itemService.getItems(pageRequest);
         }
 
