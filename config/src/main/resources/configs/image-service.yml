@@ -1,0 +1,7 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://registry/eureka/
+
+server:
+  context-path: /image
