@@ -1,6 +1,7 @@
 package com.groupproject.ordering.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -16,6 +17,7 @@ public class ProductCart {
     private Long itemId;
     private Integer quantity;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "cartId")
     private Cart cart;
