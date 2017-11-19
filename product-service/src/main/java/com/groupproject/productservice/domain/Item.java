@@ -14,7 +14,7 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private Float price;
+    private Integer price;
     private Integer quantity;
 
     @OneToMany(mappedBy = "item")

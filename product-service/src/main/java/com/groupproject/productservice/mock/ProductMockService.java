@@ -86,7 +86,7 @@ public class ProductMockService {
 
     private Item getNewPersistedItem(Product product) {
         Item item = new Item();
-        item.setPrice(1000.0f);
+        item.setPrice(1000);
         item.setQuantity(10);
         item.setProduct(product);
         return itemRepository.save(item);

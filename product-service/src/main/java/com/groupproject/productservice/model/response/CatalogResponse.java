@@ -6,5 +6,5 @@ import java.util.List;
 
 @Data
 public class CatalogResponse {
-    private List<CatalogEntity> products;
+    private List<CatalogEntry> products;
 }

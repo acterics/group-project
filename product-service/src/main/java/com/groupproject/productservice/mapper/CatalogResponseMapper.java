@@ -2,10 +2,9 @@ package com.groupproject.productservice.mapper;
 
 
 import com.groupproject.productservice.domain.Item;
-import com.groupproject.productservice.model.response.CatalogEntity;
+import com.groupproject.productservice.model.response.CatalogEntry;
 import com.groupproject.productservice.model.response.CatalogResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -23,7 +22,7 @@ public class CatalogResponseMapper {
 
     public CatalogResponse map(List<Item> items) {
         CatalogResponse catalog = new CatalogResponse();
-        List<CatalogEntity> catalogEntities = new ArrayList<>();
+        List<CatalogEntry> catalogEntities = new ArrayList<>();
         for (Item item: items) {
             catalogEntities.add(catalogEntityMapper.map(item));
         }

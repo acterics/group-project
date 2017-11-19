@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class CatalogEntity {
+public class CatalogEntry {
 
     private Long id;
     private Boolean available;
@@ -15,7 +15,7 @@ public class CatalogEntity {
     private String title;
     private String description;
     private Category category;
-    private Float price;
+    private Integer price;
     private List<PropertyResponse> properties;
     private List<Photo> photos;
 
