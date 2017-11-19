@@ -1,5 +1,5 @@
 package com.groupproject.apigateway.domain.product
 
-data class Photo(val id: Long,
-                 val filename: String,
-                 val photoOrder: Int)
+data class Photo(var id: Long = 0,
+                 var filename: String = "",
+                 var photoOrder: Int = 0)

@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RequestMethod
 @FeignClient(name = "ordering-service")
 interface OrderingClient {
 
-    @RequestMapping(method = arrayOf(RequestMethod.GET), value = "/cart")
+    @RequestMapping(method = arrayOf(RequestMethod.GET), value = "/ordering/cart")
     fun getCart(): CartResponse
 }

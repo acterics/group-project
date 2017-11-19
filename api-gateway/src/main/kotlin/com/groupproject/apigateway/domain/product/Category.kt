@@ -1,6 +1,6 @@
 package com.groupproject.apigateway.domain.product
 
-data class Category(val id: Long,
-                    val name: String,
-                    val title: String,
-                    val description: String)
+data class Category(var id: Long = 0,
+                    var name: String = "",
+                    var title: String = "",
+                    var description: String = "")

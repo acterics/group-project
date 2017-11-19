@@ -32,8 +32,12 @@ dependencies {
     compile 'org.springframework.cloud:spring-cloud-starter'
     compile 'org.springframework.cloud:spring-cloud-starter-eureka'
     compile 'org.springframework.cloud:spring-cloud-starter-feign'
+    compile 'org.springframework.boot:spring-boot-starter-web'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
     compile 'io.reactivex:rxkotlin:2.0.0-RC1'
+    compile 'com.fasterxml.jackson.module:jackson-module-parameter-names'
+    compile 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8'
+    compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
     testCompile 'org.springframework.boot:spring-boot-starter-test'
 
 }

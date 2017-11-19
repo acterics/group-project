@@ -1,4 +1,4 @@
 package com.groupproject.apigateway.domain.ordering
 
-data class CartEntry(val itemId: Long,
-                     val quantity: Int)
+data class CartEntry(var itemId: Long = 0,
+                     var quantity: Int = 0)

@@ -1,3 +1,3 @@
 package com.groupproject.apigateway.domain.product
 
-data class CatalogResponse(val products: List<CatalogEntry>)
+data class CatalogResponse(var products: List<CatalogEntry> = listOf())

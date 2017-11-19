@@ -1,11 +1,11 @@
 package com.groupproject.apigateway.domain.product
 
-data class CatalogEntry(val id: Long,
-                        val available: Boolean,
-                        val brand: String,
-                        val title: String,
-                        val description: String,
-                        val category: Category,
-                        val price: Float,
-                        val properties: List<PropertyResponse>,
-                        val photos: List<Photo>)
+data class CatalogEntry(var id: Long = 0,
+                        var available: Boolean = false,
+                        var brand: String = "",
+                        var title: String = "",
+                        var description: String = "",
+                        var category: Category = Category(),
+                        var price: Int = 0,
+                        var properties: List<PropertyResponse> = listOf(),
+                        var photos: List<Photo> = listOf())
