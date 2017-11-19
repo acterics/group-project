@@ -1,3 +1,8 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://registry/eureka/
+
 spring:
   datasource:
     url: jdbc:postgresql://database:5432/${POSTGRES_DB}
@@ -7,7 +12,7 @@ spring:
     driverClassName: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: create-drop
     show-sql: true
 
 

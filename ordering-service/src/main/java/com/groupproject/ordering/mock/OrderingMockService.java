@@ -25,7 +25,7 @@ public class OrderingMockService {
     @PostConstruct
     public void mockDatabase() {
         Cart cart = getNewPersistedCart(1L);
-        for (long itemId = 1; itemId < 5; itemId++) {
+        for (long itemId = 11; itemId < 17; itemId++) {
             ProductCart productCart = getNewPersistedProductCart(cart, itemId, 1);
         }
     }

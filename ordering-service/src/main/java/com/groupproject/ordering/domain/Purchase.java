@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 @Data
 @Entity
+@Table
 public class Purchase {
 
     @Id
@@ -14,7 +15,7 @@ public class Purchase {
 
     @ManyToOne
     @JoinColumn(name = "orderId")
-    private Order order;
+    private Order orderModel;
 
     @ManyToOne
     @JoinColumn(name = "paymentMethodId")
