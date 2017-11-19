@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: image-service
+  cloud:
+    config:
+      uri: http://config
+      fail-fast: true
+      password: ${CONFIG_SERVICE_PASSWORD}
+      username: user
+
+server:
+  port: 80
+
+imgproxy:
+  key: ${IMGPROXY_KEY}
+  salt: ${IMGPROXY_SALT}
