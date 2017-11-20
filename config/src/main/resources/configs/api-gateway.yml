@@ -25,3 +25,7 @@ zuul:
       path: /image/**
       serviceId: image-service
       stripPrefix: false
+    imgproxy:
+      path: /imgproxy/**
+      url: http://imgproxy
+      stripPrefix: true

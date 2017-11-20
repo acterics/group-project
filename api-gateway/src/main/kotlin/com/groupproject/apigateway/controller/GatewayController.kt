@@ -23,9 +23,9 @@ class GatewayController
         orderingService.getCart()
                 .map { cartResponse -> cartResponse.items }
                 .flatMap { cartItems -> productService.getProducts(cartItems.map { it.itemId })
-                        .map { it.products }
+                        .map { response -> response.products }
                         .map { products -> ProductCartResponse(products, cartItems) }
                 }
-                .let { deferredResultWrapper.toDeferredResult(it) }
+                .let { observable ->  deferredResultWrapper.toDeferredResult(observable) }
 
 }
