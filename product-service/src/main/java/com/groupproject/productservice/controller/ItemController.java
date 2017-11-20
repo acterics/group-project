@@ -1,5 +1,6 @@
 package com.groupproject.productservice.controller;
 
+import com.groupproject.productservice.configuration.ConstantConfiguration;
 import com.groupproject.productservice.domain.Item;
 import com.groupproject.productservice.mapper.CatalogResponseMapper;
 import com.groupproject.productservice.model.response.CatalogResponse;
@@ -16,14 +17,17 @@ import static java.util.OptionalInt.of;
 @RestController
 public class ItemController {
 
-    private static final int DEFAULT_PAGE = 0;
-    private static final int DEFAULT_PAGE_SIZE = 10;
-
     private final ItemService itemService;
+    private final Integer defaultPage;
+    private final Integer defaultSize;
+
 
     @Autowired
-    public ItemController(ItemService itemService) {
+    public ItemController(ItemService itemService,
+                          ConstantConfiguration constantConfiguration) {
         this.itemService = itemService;
+        this.defaultPage = constantConfiguration.getPage();
+        this.defaultSize = constantConfiguration.getSize();
     }
 
     @RequestMapping(path = "/catalog", method = RequestMethod.GET)
@@ -31,7 +35,7 @@ public class ItemController {
                                                     @RequestParam(value = "size", required = false) Integer size) {
         Optional<Integer> pageArg = Optional.ofNullable(page);
         Optional<Integer> sizeArg = Optional.ofNullable(size);
-        return itemService.getCatalogPage(pageArg.orElse(DEFAULT_PAGE), sizeArg.orElse(DEFAULT_PAGE_SIZE));
+        return itemService.getCatalogPage(pageArg.orElse(defaultPage), sizeArg.orElse(defaultSize));
     }
 
 
