@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service
 import rx.Observable
 import java.net.InetAddress
 
+@Deprecated("Gateway get resized images from other services")
 @Service
 class ImageService
 @Autowired constructor(private val imageClient: ImageClient) {
@@ -24,7 +25,7 @@ class ImageService
                 .map { response -> response.images }
 
     fun proxyProductsImages(products: List<CatalogEntry>, images: List<OutputImage>) {
-        images.map { image -> "${InetAddress.getLocalHost().hostAddress}/imgproxy${image.url}" }
+        images.map { image -> "/imgproxy${image.url}" }
                 .zip(products.flatMap { it.photos }, { url, photo -> photo.filename = url })
     }
 

@@ -35,7 +35,7 @@ public class ItemController {
                                                     @RequestParam(value = "size", required = false) Integer size) {
         Optional<Integer> pageArg = Optional.ofNullable(page);
         Optional<Integer> sizeArg = Optional.ofNullable(size);
-        return itemService.getCatalogPage(pageArg.orElse(defaultPage), sizeArg.orElse(defaultSize));
+        return itemService.getCatalogPage(pageArg.orElse(defaultPage), sizeArg.orElse(defaultSize), 100, 100);
     }
 
 

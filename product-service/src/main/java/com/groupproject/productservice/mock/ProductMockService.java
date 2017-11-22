@@ -5,11 +5,8 @@ import com.groupproject.productservice.domain.*;
 import com.groupproject.productservice.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.List;
 
 @Component
 public class ProductMockService {
@@ -52,9 +49,9 @@ public class ProductMockService {
         ProductProperty productProperty = getNewPersistedProductProperty(product, property);
         for (int i = 0; i < 10; i++) {
             Item item = getNewPersistedItem(product);
-            Photo photo1 = getNewPersistedPhoto("https://static1.jassets.com/p/Reebok-Reebok-Zjet-Soul-Grey-Running-Shoes-3902-5834962-1-pdp_slider_xs.jpg", item, 1);
-            Photo photo2 = getNewPersistedPhoto("https://static1.jassets.com/p/Reebok-Reebok-Zjet-Soul-Grey-Running-Shoes-3902-5834962-2-pdp_slider_xs.jpg", item, 2);
-            Photo photo3 = getNewPersistedPhoto("https://static1.jassets.com/p/Reebok-Reebok-Zjet-Soul-Grey-Running-Shoes-3902-5834962-3-pdp_slider_xs.jpg", item, 3);
+            ProductPhoto photo1 = getNewPersistedPhoto("https://static1.jassets.com/p/Reebok-Reebok-Zjet-Soul-Grey-Running-Shoes-3902-5834962-1-pdp_slider_xs.jpg", item, 1);
+            ProductPhoto photo2 = getNewPersistedPhoto("https://static1.jassets.com/p/Reebok-Reebok-Zjet-Soul-Grey-Running-Shoes-3902-5834962-2-pdp_slider_xs.jpg", item, 2);
+            ProductPhoto photo3 = getNewPersistedPhoto("https://static1.jassets.com/p/Reebok-Reebok-Zjet-Soul-Grey-Running-Shoes-3902-5834962-3-pdp_slider_xs.jpg", item, 3);
             PropertyValue propertyValue = getNewPersistedPropertyValue(item, property, String.valueOf(i));
         }
     }
@@ -116,8 +113,8 @@ public class ProductMockService {
         return categoryRepository.save(category);
     }
 
-    private Photo getNewPersistedPhoto(String filename, Item item, int order) {
-        Photo photo = new Photo();
+    private ProductPhoto getNewPersistedPhoto(String filename, Item item, int order) {
+        ProductPhoto photo = new ProductPhoto();
         photo.setFilename(filename);
         photo.setPhotoOrder(order);
         photo.setProductItem(item);

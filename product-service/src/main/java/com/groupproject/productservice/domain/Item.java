@@ -21,7 +21,7 @@ public class Item {
     private List<PropertyValue> properties = new ArrayList<>();
 
     @OneToMany(mappedBy = "productItem")
-    private List<Photo> photos = new ArrayList<>();
+    private List<ProductPhoto> photos = new ArrayList<>();
 
 
     @ManyToOne

@@ -1,7 +1,7 @@
 package com.groupproject.productservice.model.response;
 
 import com.groupproject.productservice.domain.Category;
-import com.groupproject.productservice.domain.Photo;
+import com.groupproject.productservice.domain.ProductPhoto;
 import lombok.Data;
 
 import java.util.List;
@@ -17,6 +17,6 @@ public class CatalogEntry {
     private Category category;
     private Integer price;
     private List<PropertyResponse> properties;
-    private List<Photo> photos;
+    private List<ProductPhoto> photos;
 
 }
