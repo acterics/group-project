@@ -1,14 +1,23 @@
 spring:
   application:
     name: auth-server
-  cloud:
-    config:
-      uri: http://config
-      fail-fast: true
-      password: ${CONFIG_SERVICE_PASSWORD}
-      username: user
+#  cloud:
+#    config:
+#      uri: http://config
+#      fail-fast: true
+#      password: ${CONFIG_SERVICE_PASSWORD}
+#      username: user
 
 server:
   port: 80
+
+auth:
+  default-user: ${DEFAULT_USER}
+  default-password: ${DEFAULT_PASSWORD}
+  secret: ${AUTH_SECRET}
+  prefix: Bearer
+  header: Authorization
+  expiration: ${AUTH_EXPIRATION}
+
 
 

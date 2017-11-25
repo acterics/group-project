@@ -16,6 +16,13 @@ services:
         database:
           condition: service_started
 
+  auth-server:
+      build: auth-server
+      environment:
+        - DEFAULT_USER
+        - DEFAULT_PASSWORD
+        - AUTH_SECRET
+
   gateway:
       build: api-gateway
       ports:
