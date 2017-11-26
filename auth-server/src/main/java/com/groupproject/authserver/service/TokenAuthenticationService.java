@@ -17,7 +17,7 @@ import static java.util.Collections.emptyList;
 
 @Service
 @Slf4j
-public class TokenAuthorizationService {
+public class TokenAuthenticationService {
 
     @Value("${auth.expiration}")
     private Long expiration;

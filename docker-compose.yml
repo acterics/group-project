@@ -22,6 +22,9 @@ services:
         - DEFAULT_USER
         - DEFAULT_PASSWORD
         - AUTH_SECRET
+        - AUTH_EXPIRATION
+      ports:
+        - 8082:80
 
   gateway:
       build: api-gateway
