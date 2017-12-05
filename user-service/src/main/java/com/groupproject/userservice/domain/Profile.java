@@ -15,7 +15,7 @@ public class Profile {
     private Long id;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "userId")
+    @OneToOne(fetch=FetchType.LAZY, mappedBy="profile")
     private User user;
 
     private String firstName;
@@ -23,4 +23,5 @@ public class Profile {
 
     private String gender;
     private String phone;
+    private String avatar;
 }

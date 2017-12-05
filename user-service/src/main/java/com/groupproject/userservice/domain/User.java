@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table
+@Table(name="user_table")
 public class User {
 
     @Id
@@ -19,6 +19,7 @@ public class User {
     @JsonIgnore
     private String password;
 
-    @OneToOne(mappedBy = "profileId")
+    @OneToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="profileId")
     private Profile profile;
 }
