@@ -31,7 +31,8 @@ public class ItemController {
     }
 
     @RequestMapping(path = "/catalog", method = RequestMethod.GET)
-    public @ResponseBody CatalogResponse getCatalog(@RequestParam(value = "page", required = false) Integer page,
+    @ResponseBody
+    public CatalogResponse getCatalog(@RequestParam(value = "page", required = false) Integer page,
                                                     @RequestParam(value = "size", required = false) Integer size) {
         Optional<Integer> pageArg = Optional.ofNullable(page);
         Optional<Integer> sizeArg = Optional.ofNullable(size);
