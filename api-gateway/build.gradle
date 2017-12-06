@@ -38,6 +38,12 @@ dependencies {
     compile 'com.fasterxml.jackson.module:jackson-module-parameter-names'
     compile 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8'
     compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+
+    compile "io.jsonwebtoken:jjwt:0.7.0"
+    compile "org.springframework.security:spring-security-jwt"
+    compile "org.springframework.boot:spring-boot-starter-security"
+
+
     testCompile 'org.springframework.boot:spring-boot-starter-test'
 
 }

@@ -30,6 +30,11 @@ services:
       build: api-gateway
       ports:
         - 8080:80
+      environment:
+        - DEFAULT_USER
+        - DEFAULT_PASSWORD
+        - AUTH_SECRET
+        - AUTH_EXPIRATION
       depends_on:
         config:
           condition: service_healthy
