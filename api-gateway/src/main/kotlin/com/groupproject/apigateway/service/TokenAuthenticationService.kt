@@ -26,7 +26,7 @@ class TokenAuthenticationService {
     @Value("\${auth.header}")
     private lateinit var header: String
 
-
+    var token: String? = null
 
     fun addAuthentication(res: HttpServletResponse, username: String) {
         val jwt = Jwts.builder()
@@ -34,6 +34,9 @@ class TokenAuthenticationService {
                 .setExpiration(Date(System.currentTimeMillis() + expiration.toLong()))
                 .signWith(SignatureAlgorithm.HS512, secret)
                 .compact()
+        token = jwt
+        res.writer.write("{ \"token\": \"$jwt\" }")
+        res.addHeader("Content-Type", "application/json")
         res.addHeader(header, prefix + " " + jwt)
     }
 

@@ -33,6 +33,7 @@ class JwtLoginFilter(url: String,
         res.addHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
         res.addHeader("Access-Control-Allow-Headers", "origin, content-type, accept, x-requested-with, Authorization");
         res.addHeader("Access-Control-Max-Age", "3600");
+
         if (req.method != "POST") {
 
             return null

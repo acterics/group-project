@@ -3,7 +3,7 @@ package com.groupproject.apigateway.configuration
 import com.groupproject.apigateway.filter.JwtAuthenticationFilter
 import com.groupproject.apigateway.filter.JwtLoginFilter
 import com.groupproject.apigateway.service.TokenAuthenticationService
-import com.groupproject.apigateway.service.UserService
+//import com.groupproject.apigateway.service.UserService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
@@ -23,8 +23,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 @Configuration
 @EnableWebSecurity
 open class WebSecurityConfig @Autowired
-constructor(private val tokenAuthenticationService: TokenAuthenticationService,
-            private val userService: UserService) : WebSecurityConfigurerAdapter() {
+constructor(private val tokenAuthenticationService: TokenAuthenticationService
+            /*,private val userService: UserService*/) : WebSecurityConfigurerAdapter() {
 
     @Value("\${auth.default-user}")
     lateinit var defaultUser: String
@@ -41,10 +41,11 @@ constructor(private val tokenAuthenticationService: TokenAuthenticationService,
                 .antMatchers("/").permitAll()
                 .antMatchers(HttpMethod.POST, "/login").permitAll()
                 .antMatchers(HttpMethod.GET, "/products/**").permitAll()
+                .antMatchers(HttpMethod.OPTIONS, "/products/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 // We filter the api/login requests
-                .addFilterAt(JwtLoginFilter("/login", authenticationManager(), tokenAuthenticationService),
+                .addFilterBefore(JwtLoginFilter("/login", authenticationManager(), tokenAuthenticationService),
                         UsernamePasswordAuthenticationFilter::class.java)
                 // And filter other requests to check the presence of JWT in header
                 .addFilterBefore(JwtAuthenticationFilter(tokenAuthenticationService),

@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam
 
 @FeignClient(serviceId = "user-service")
 interface UserClient {
-    @RequestMapping(method = arrayOf(RequestMethod.GET), value = "/user/")
+    @RequestMapping(method = arrayOf(RequestMethod.GET), value = "/user")
     fun getUserByName(@RequestParam(value = "username") username: String?): User
 }
